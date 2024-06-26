@@ -1,0 +1,15 @@
+/* Custom Admin Dashboard Widget */
+#custom_dashboard_widget {
+    background-color: #333;
+    color: #fff; 
+    border: 1px solid #444;
+}
+
+#custom_dashboard_widget .widget-title {
+    background-color: #444; 
+    color: #fff;
+}
+
+#custom_dashboard_widget .inside {
+    padding: 10px; 
+}

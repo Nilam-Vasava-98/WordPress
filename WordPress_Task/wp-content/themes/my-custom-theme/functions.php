@@ -18,6 +18,13 @@ function my_custom_theme_enqueue_styles_scripts() {
 
 add_action('wp_enqueue_scripts', 'my_custom_theme_enqueue_styles_scripts');
 
+// admin widget style
+
+function enqueue_custom_admin_style() {
+    wp_enqueue_style('custom-admin-style', get_template_directory_uri() . '/css/custom-admin-style.css');
+}
+add_action('admin_enqueue_scripts', 'enqueue_custom_admin_style');
+
 
 // Add a custom dashboard widget
 function my_custom_dashboard_widget() {
