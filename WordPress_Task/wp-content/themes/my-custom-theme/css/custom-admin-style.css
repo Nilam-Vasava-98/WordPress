@@ -1,11 +1,16 @@
 /* Custom Admin Dashboard Widget */
 #custom_dashboard_widget {
-    background-color: #333;
-    color: #fff; 
+    background-color: #fff;
+    color: #333; 
     border: 1px solid #444;
 }
 
-#custom_dashboard_widget .widget-title {
+#custom_dashboard_widget .postbox-header{
+    background-color: #444; 
+
+}
+
+#custom_dashboard_widget .postbox-header h2 {
     background-color: #444; 
     color: #fff;
 }
