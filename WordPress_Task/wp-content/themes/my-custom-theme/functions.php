@@ -64,7 +64,7 @@ add_action('admin_menu', 'customize_admin_menu');
 function set_custom_book_columns($columns) {
     unset($columns['date']); // Remove the default 'Date' column
     // unset($columns['author']);
-    $columns['author'] = __('Author');
+    $columns['bookauthor'] = __('Author');
     $columns['year'] = __('Publication Year');
     $columns['genre'] = __('Genre');
     $columns['date'] = __('Date');
@@ -73,7 +73,7 @@ function set_custom_book_columns($columns) {
 
 function custom_book_column($column, $post_id) {
     switch ($column) {
-        case 'author':
+        case 'bookauthor':
             $author = get_post_meta($post_id, '_cbpt_author', true);
             echo '<pre>';
             var_dump($author); 
