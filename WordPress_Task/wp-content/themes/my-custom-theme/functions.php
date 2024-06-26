@@ -29,9 +29,9 @@ add_action('admin_enqueue_scripts', 'enqueue_custom_admin_style');
 // Add a custom dashboard widget
 function my_custom_dashboard_widget() {
     wp_add_dashboard_widget(
-        'custom_dashboard_widget', // Widget slug.
-        'Welcome to Your Site!',   // Title.
-        'custom_dashboard_widget_content' // Display function.
+        'custom_dashboard_widget', 
+        'Welcome to Your Site!',   
+        'custom_dashboard_widget_content' // custom Display function.
     );
 }
 
@@ -49,12 +49,12 @@ add_action('wp_dashboard_setup', 'my_custom_dashboard_widget');
 
 // Customize the admin menu
 function customize_admin_menu() {
-    // Remove some default items
-    remove_menu_page('edit-comments.php'); // Comments
+    // Remove Comments from admin menu (default items)
+    remove_menu_page('edit-comments.php'); 
 
-    // Reorder items (example: move 'Pages' to the top)
+    // Move 'Pages' to the top (just below 'Dashboard')
     global $menu;
-    $menu[5] = $menu[20]; // Move 'Pages' to the top (just below 'Dashboard')
+    $menu[5] = $menu[20]; 
 }
 
 add_action('admin_menu', 'customize_admin_menu');
@@ -88,5 +88,3 @@ function custom_book_column($column, $post_id) {
 
 add_filter('manage_book_posts_columns', 'set_custom_book_columns');
 add_action('manage_book_posts_custom_column', 'custom_book_column', 10, 2);
-
-
