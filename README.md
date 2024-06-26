@@ -1,5 +1,6 @@
-**Contains Wordpress Practical task files
-**
+# Wordpress Practical Task CORENET
+
+****Contains Wordpress Practical task files****
 
 Custom theme directory /my-custom-theme
 Custom plugin with post type and shortcode /custom-book-post-type
