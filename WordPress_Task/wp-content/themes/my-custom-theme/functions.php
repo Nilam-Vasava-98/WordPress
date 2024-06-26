@@ -60,9 +60,10 @@ function customize_admin_menu() {
 add_action('admin_menu', 'customize_admin_menu');
 
 // Add custom columns to the "Book" post type list table
+// Add custom columns to the "Book" post type list table
 function set_custom_book_columns($columns) {
     unset($columns['date']); // Remove the default 'Date' column
-    unset($columns['author']);
+    // unset($columns['author']);
     $columns['author'] = __('Author');
     $columns['year'] = __('Publication Year');
     $columns['genre'] = __('Genre');
@@ -74,6 +75,9 @@ function custom_book_column($column, $post_id) {
     switch ($column) {
         case 'author':
             $author = get_post_meta($post_id, '_cbpt_author', true);
+            echo '<pre>';
+            var_dump($author); 
+            echo '</pre>';
             if (empty($author)) {
                 echo '<span style="color: red;">No Author Found</span>';
             } else {
@@ -82,6 +86,9 @@ function custom_book_column($column, $post_id) {
             break;
         case 'year':
             $year = get_post_meta($post_id, '_cbpt_year', true);
+            // echo '<pre>';
+            // var_dump($year); 
+            // echo '</pre>';
             if (empty($year)) {
                 echo '<span style="color: red;">No Year Found</span>';
             } else {
@@ -90,6 +97,9 @@ function custom_book_column($column, $post_id) {
             break;
         case 'genre':
             $genre = get_post_meta($post_id, '_cbpt_genre', true);
+            // echo '<pre>';
+            // var_dump($genre); 
+            // echo '</pre>';
             if (empty($genre)) {
                 echo '<span style="color: red;">No Genre Found</span>';
             } else {
@@ -102,5 +112,3 @@ function custom_book_column($column, $post_id) {
 
 add_filter('manage_book_posts_columns', 'set_custom_book_columns');
 add_action('manage_book_posts_custom_column', 'custom_book_column', 10, 2);
-
-
