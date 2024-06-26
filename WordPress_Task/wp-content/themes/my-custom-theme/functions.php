@@ -60,7 +60,6 @@ function customize_admin_menu() {
 add_action('admin_menu', 'customize_admin_menu');
 
 // Add custom columns to the "Book" post type list table
-// Add custom columns to the "Book" post type list table
 function set_custom_book_columns($columns) {
     unset($columns['date']); // Remove the default 'Date' column
     // unset($columns['author']);
@@ -75,9 +74,9 @@ function custom_book_column($column, $post_id) {
     switch ($column) {
         case 'bookauthor':
             $author = get_post_meta($post_id, '_cbpt_author', true);
-            echo '<pre>';
-            var_dump($author); 
-            echo '</pre>';
+            // echo '<pre>';
+            // var_dump($author); 
+            // echo '</pre>';
             if (empty($author)) {
                 echo '<span style="color: red;">No Author Found</span>';
             } else {
@@ -112,3 +111,39 @@ function custom_book_column($column, $post_id) {
 
 add_filter('manage_book_posts_columns', 'set_custom_book_columns');
 add_action('manage_book_posts_custom_column', 'custom_book_column', 10, 2);
+
+
+// REST API initialization for book posts
+add_action('rest_api_init', function () {
+    register_rest_route('custom/v1', '/books', array(
+        'methods' => 'GET',
+        'callback' => 'get_books',
+    ));
+});
+
+
+// handle the GET request
+function get_books() {
+    $args = array(
+        'post_type' => 'book',
+        'posts_per_page' => -1, 
+    );
+    $query = new WP_Query($args);
+
+    $books = array();
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            $books[] = array(
+                'title' => get_the_title(),
+                'author' => get_post_meta(get_the_ID(), '_cbpt_author', true),
+                'year' => get_post_meta(get_the_ID(), '_cbpt_year', true),
+                'genre' => get_post_meta(get_the_ID(), '_cbpt_genre', true),
+            );
+        }
+        wp_reset_postdata();
+    }
+    return new WP_REST_Response($books, 200);
+}
+
+
