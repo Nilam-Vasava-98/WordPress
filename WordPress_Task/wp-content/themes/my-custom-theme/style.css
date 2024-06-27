@@ -31,12 +31,15 @@ header {
     padding: 5px 0;
 }
 
-/* General Styles */
 .header-container {
-    width: 90%;
+    /* width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 10px 0;
+    padding: 10px 0; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
 }
 
 .header-logo-nav {
@@ -189,3 +192,5 @@ footer {
         margin-bottom: 10px;
     }
 }
+
+
